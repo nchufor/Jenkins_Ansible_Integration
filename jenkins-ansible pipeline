@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage ("SCM Checkout") {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/joshking1/Jenkins_Ansible_Integration.git']]])
+                
+            }
+        }
+        stage ("Ansible Playbook") {
+            steps {
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.inv', playbook: 'apache.yml'
+            }
+        }
+    }
+}
