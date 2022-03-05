@@ -1,6 +1,6 @@
 ---
 - hosts: webservers
-  remote_user: root
+  remote_user: ec-
 
 
   tasks:
@@ -14,20 +14,6 @@
         name: httpd
         enabled: yes
         state: started
-
-    - name: Install MYSQL DB Community edition
-      yum:
-        name: 
-          - mysql
-          - mysql
-        state: latest
-
-    - name: Start the MYSQL service
-      service:
-        name: mysqld
-        enabled: yes
-        state: started
-
 
     - name: Installing PHP
       yum:
