@@ -1,63 +1,42 @@
 ---
-- hosts: webservers
-  become: yes
+- hosts: testservers
+  remote_user: root
+
+
   tasks:
-    - name: Setup repo for Mysql 5.7
-      yum:
-        name: http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
-        state: present
-
-    - name: Install Packages
-      yum:
-        name:
-        - httpd
-        - mysql-community-server
-        - firewalld
-        state: present
-
-    - name: Start Apache
-      service:
+    - name: Installing Apache
+      yum: 
         name: httpd
-        state: started
-        enabled: yes
+        state: installed
 
-    - name: Start Mysql
+    - name: Enabling httpd service and start the service
+      service: 
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: Install MYSQL DB Community edition
+      yum:
+        name: 
+          - maraidb-server
+          - maraidb 
+        state: latest
+
+    - name: Start the MYSQL service
       service:
         name: mysqld
-        state: started
         enabled: yes
-
-    - name: Start Firewalld
-      service:
-        name: firewalld
         state: started
-        enabled: yes
 
-    - name: Apache to listen on 80
-      lineinfile:
-        path: /etc/httpd/conf/httpd.conf
-        regexp: Listen 80
-        line: Listen 80
-      notify: Restart Apache
 
-    - name: Allow 80 port
-      firewalld:
-        port: 80/tcp
-        permanent: yes
-        state: enabled
-      notify: Restart Firewalld
+    - name: Installing PHP
+      yum:
+        name: 
+          - php 
+          - php-mysql 
+        state: latest
 
-    - name: Disable SELinux
-      selinux:
-        state: disabled
-
-  handlers:
-    - name: Restart Firewalld
-      service:
-        name: firewalld
-        state: restarted
-
-    - name: Restart Apache
-      service:
-        name: httpd
-        state: restarted
+    - name: Copying your php file in the /var/www/html
+      copy:
+        src: /root/ansibleplaybook/index.php
+        dest: /var/www/html/index.php
