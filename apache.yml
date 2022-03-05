@@ -18,8 +18,8 @@
     - name: Install MYSQL DB Community edition
       yum:
         name: 
-          - maraidb-server
-          - maraidb 
+          - mysql
+          - mysql
         state: latest
 
     - name: Start the MYSQL service
