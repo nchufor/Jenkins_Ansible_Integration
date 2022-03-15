@@ -22,4 +22,3 @@
       vars:
         packages:
           - jenkins
-          - java --version 
