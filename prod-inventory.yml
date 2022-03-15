@@ -1,4 +1,4 @@
-[all:vars]
+[webservers]
 ansible_user='root' #change accordingly
 ansible_become=yes
 ansible_become_method=sudo
