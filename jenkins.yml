@@ -1,6 +1,6 @@
 ---
 - hosts: webservers
-  remote_user: admin
+  remote_user: ec2-user
   become: true
   tasks:
     - name: Ensure Jenkins repository is added
