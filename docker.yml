@@ -3,8 +3,8 @@
   become: yes
   tasks:
       - name: '[NGINX] Running container'
-      become: yes
-      docker_container:
+        become: yes
+        docker_container:
         name: 'nginx'
         recreate: true
         restart_policy: unless-stopped
