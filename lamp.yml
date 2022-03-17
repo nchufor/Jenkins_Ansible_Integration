@@ -1,19 +1,12 @@
----
-# CentOS 7 LAMP Stack
-# Author: Arockiasamy K
-# Version: 1.0
 
-- name: Apply for common configuration to all the nodes
-  hosts: webservers
-  become: root
 
-   
-- name: deploy MySQL and configure databases
-  hosts: dbservers
-  become: yes
-   
-   
-- name: deploy Apache, PHP and configure website code
-  hosts: webservers
-  become: yes
-   
+
+
+- hosts: all
+  tasks:
+  - name: "repository"
+    yum_repository:
+      name: "Docker"
+      description: "Docker Repo"
+      baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable"
+      gpgcheck: "no
