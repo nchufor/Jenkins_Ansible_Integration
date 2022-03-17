@@ -3,9 +3,10 @@
   become: yes
 
   tasks:
-  - name: "repository"
-    yum_repository:
-      name: "Docker"
-      description: "Docker Repo"
-      baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable"
-      gpgcheck: "no
+- name: Create user on a linux server
+  hosts: remote-server
+  become: yes
+  gather_facts: false
+  vars:
+    - user: <username here>
+    - password: <Password hash generated>
