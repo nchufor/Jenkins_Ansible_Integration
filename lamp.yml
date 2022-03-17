@@ -7,19 +7,13 @@
   hosts: all
   become: root
 
-  roles:
-   - common
    
 - name: deploy MySQL and configure databases
   hosts: dbservers
   become: yes
    
-  roles:
-   - db
    
 - name: deploy Apache, PHP and configure website code
   hosts: webservers
   become: yes
    
-  roles:
-   - web
