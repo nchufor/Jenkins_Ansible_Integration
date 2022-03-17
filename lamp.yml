@@ -1,6 +1,6 @@
 ---
 - hosts: linuxsysadmins
-  remote_user: ansible
+  remote_user: webservers
   become: yes
   become_method: sudo
   gather_facts: no
