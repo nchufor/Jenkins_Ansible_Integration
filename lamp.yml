@@ -4,19 +4,19 @@
   become: true
 
   tasks:
-- name: Create user idm_user
-  ipauser:
-    ipaadmin_password: MySecret123
-    name: idm_user
-    first: Alice
-    last: Acme
-    uid: 1000111
-    gid: 10011
-    phone: "+555123457"
-    email: idm_user@acme.com
-    passwordexpiration: "2023-01-19 23:59:59"
-    password: "Password123"
-    update_password: on_create
+  - name: Create user idm_user
+    ipauser:
+      ipaadmin_password: MySecret123
+      name: idm_user
+      first: Alice
+      last: Acme
+      uid: 1000111
+      gid: 10011
+      phone: "+555123457"
+      email: idm_user@acme.com
+      passwordexpiration: "2023-01-19 23:59:59"
+      password: "Password123"
+      update_password: on_create
     
     
   
