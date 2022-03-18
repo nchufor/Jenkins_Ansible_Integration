@@ -4,8 +4,8 @@
   become: true
 
   tasks:
-  - name: Delete users idm_user_1, idm_user_2, idm_user_3
-    ipauser:
+   - name: Delete users idm_user_1, idm_user_2, idm_user_3
+     ipauser:
       ipaadmin_password: MySecret123
       users:
       - name: idm_user_1
